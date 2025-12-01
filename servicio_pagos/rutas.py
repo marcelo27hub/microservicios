@@ -9,8 +9,8 @@ def verificar_token(token):
 def registrar_rutas(app):
     @app.post("/pago")
     def realizar_pago():
-        auth = request.headers.get("Authorization","")
-        if not auth.startswith("Bearer ") or not verificar_token(auth.split(" ")[1]):
+        encabezado_authorizacion = request.headers.get("Authorization","")
+        if not encabezado_authorizacion.startswith("Bearer ") or not verificar_token(encabezado_authorizacion.split(" ")[1]):
             return jsonify({"error":"token invalido"}),401
         datos = request.json or {}
         monto = int(datos.get("monto_centavos",0))
