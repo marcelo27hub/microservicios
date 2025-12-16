@@ -1,6 +1,7 @@
 import sqlite3
-from pathlib import Path
+from pathlib import Path #para manejar rutas path
 
+#creo mi base de datos
 BD = Path(__file__).parent / "pagos.db"
 
 def obtener_conexion():
