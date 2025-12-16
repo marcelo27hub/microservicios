@@ -1,12 +1,17 @@
 from flask import request, jsonify
 from db import obtener_conexion
 
-TOKE_SECRETO = "token_hielos"
+#token secreto
+TOKEN_SECRETO = "token_hielos"
 
+#verificamos el token 
 def verificar_token(token):
-    return token == TOKE_SECRETO
+    return token == TOKEN_SECRETO
 
+
+#para cada peticion http que llegue desde el cliente 
 def registrar_rutas(app):
+    #cuando llegue un get y traer todo para enviarlo a la bd
     @app.get("/productos")
     def listar_productos():
         conexion = obtener_conexion()
@@ -14,8 +19,9 @@ def registrar_rutas(app):
         conexion.close()
         return jsonify([dict(f) for f in filas])
     @app.post("/productos")
+    #para inviar los datos 
     def crear_productos():
-        encabezado_authorizacion = request.headers.get("Authorizacion", "")
+        encabezado_authorizacion = request.headers.get("Authorization", "")
         if not encabezado_authorizacion.startswith("bearer ") or not verificar_token(encabezado_authorizacion.split(" ")[1]):
             return jsonify({"error": "token invalido"}), 401
         datos = request.json or {}
