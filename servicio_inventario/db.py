@@ -1,6 +1,7 @@
 import sqlite3
 from pathlib import Path
 
+
 BD = Path(__file__).parent / "inventario.db"
 
 def obtener_conexion():
