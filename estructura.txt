@@ -1,0 +1,18 @@
+tienda_hielos/
+├─ servicio_productos/
+│  ├─ app.py
+│  ├─ bd.py
+│  └─ rutas.py
+│
+├─ servicio_inventario/
+│  ├─ app.py
+│  ├─ bd.py
+│  └─ rutas.py
+│
+├─ servicio_pago/
+│  ├─ app.py
+│  ├─ bd.py
+│  └─ rutas.py
+│
+└─ cliente/
+   └─ menu.py
